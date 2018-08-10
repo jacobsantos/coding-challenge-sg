@@ -3,11 +3,28 @@
  * Solution 1 implementation library.
  */
 
+
+/**
+ * Interface GeneratorPopulationInterface
+ *
+ * birth and death date set generation.
+ */
 interface GeneratorPopulationInterface {
+	/**
+	 * Generate birth and death date for person.
+	 *
+	 * @param int $population
+	 *     Amount of people.
+	 * @return Generator
+	 */
 	public function generate_person($population);
 }
 
-
+/**
+ * Class PeopleGenerator
+ *
+ * Generate birth and death dates for person.
+ */
 class PeopleGenerator implements GeneratorPopulationInterface
 {
 	/**
@@ -31,7 +48,6 @@ class PeopleGenerator implements GeneratorPopulationInterface
 	 */
 	private $endYear;
 
-
 	public function __construct($startYear=1900, $endYear=2000)
 	{
 		if ($startYear > $endYear) {
@@ -41,6 +57,13 @@ class PeopleGenerator implements GeneratorPopulationInterface
 		$this->endYear = $endYear;
 	}
 
+	/**
+	 * Generate birth and death date for person.
+	 *
+	 * @param int $population
+	 *     Amount of people.
+	 * @return Generator
+	 */
 	public function generate_person($population)
 	{
 		for ($at=0; $at < $population; $at += 1) {
@@ -52,6 +75,11 @@ class PeopleGenerator implements GeneratorPopulationInterface
 }
 
 
+/**
+ * Class PopulationAgeData
+ *
+ * Generate and load population birth and death dates.
+ */
 class PopulationAgeData
 {
 	const FILE = __DIR__ . '/people.json';
@@ -145,8 +173,19 @@ function build_population_by_year(array $population)
 }
 
 
+/**
+ * Retrieve the first year with the most people.
+ *
+ * @param array $peopleAliveYears
+ *     Array with year as key and population alive at the time as value.
+ * @return int
+ *     Year with the most population.
+ */
 function get_year_with_most_population(array $peopleAliveYears)
 {
+	if (count($peopleAliveYears) < 1) {
+		throw new InvalidArgumentException('$peopleAliveYears has no items.');
+	}
 	arsort($peopleAliveYears);
 	file_put_contents(__DIR__ . '/population-alive.json', json_encode($peopleAliveYears, JSON_PRETTY_PRINT));
 	return key($peopleAliveYears);
