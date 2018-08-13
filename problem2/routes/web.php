@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json(App\Player::take(10)->get()->toArray());
 });
 
-Route::post('/spin', \App\Http\Controllers\SpinController::class . '@store');
+Route::post('/spin', 'SpinController@store');

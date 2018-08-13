@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Player;
-use http\Exception\InvalidArgumentException;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
 
-class SpinController extends Controller
+class SpinController extends BaseController
 {
 
     /**
@@ -21,20 +22,24 @@ class SpinController extends Controller
 
     	// Validate coins won and coins bet.
 		if (!is_numeric($spin['coins_won']) || intval($spin['coins_won']) < 1) {
-			throw new InvalidArgumentException('coins_won must be more than 0');
+			return response()->json([
+				'error' => 'coins_won must be more than 0',
+			]);
 		}
 
-		if (!is_numeric($spin) || intval($spin['coins_bet']) < 1) {
-			throw new InvalidArgumentException('coins_bet must be more than 0');
+		if (!is_numeric($spin['coins_bet']) || intval($spin['coins_bet']) < 1) {
+			return response()->json([
+				'error' => 'coins_bet must be more than 0',
+			]);
 		}
 
 		/** @var Player $player */
-		$player = Player::where('salt_value', $spin['hash'])
-			->where('player_id', $spin['player_id'])
-			->first();
+		$player = Player::where('player_id', '=', intval($spin['player_id']))->first();
 
-		if (!$player || $player->exists === false) {
-			throw new InvalidArgumentException('player not found');
+		if (!$player || !hash_equals($player->salt_value, $spin['hash'])) {
+			return response()->json([
+				'error' => 'player not found',
+			]);
 		}
 
 		$player->lifetime_spins += 1;
