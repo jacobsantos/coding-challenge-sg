@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "79722197-cab9-4fdd-aac9-bb11e5a68afb",
+		"name": "Spins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Spin [JSON]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7db45907-8046-4696-adb5-1eeb29290db1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "24cb54c2-5c7f-4a6f-8dbe-2a4e6137d38e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.set(\"coins_won\", Math.random() * 1000 + 1);",
+							"pm.variables.set(\"coins_bet\", Math.random() * 500 + 1);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"player_id\": \"{{player_id}}\",\n\t\"hash\": \"{{hash}}\",\n\t\"coins_won\": {{coins_won}},\n\t\"coins_bet\": {{coins_bet}}\n}"
+				},
+				"url": {
+					"raw": "{{host}}/spin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"spin"
+					]
+				},
+				"description": "Make a spin"
+			},
+			"response": [
+				{
+					"id": "a4406edf-1eec-47a1-aa53-d9b66f611e11",
+					"name": "Spin [JSON]",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"player_id\": \"1291592521\",\n\t\"hash\": \"cce1c5129876b550a8845da2c521422879de20b59896783cfe4aa379f30b9f31\",\n\t\"coins_won\": 500,\n\t\"coins_bet\": 1000\n}"
+						},
+						"url": {
+							"raw": "{{host}}/spin",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"spin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 Aug 2018 08:22:35 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.25 (Debian)",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "laravel_session=eyJpdiI6Imh4bW5ET1BCR1hVaHdlV0tRZHJLeXc9PSIsInZhbHVlIjoiVWwySlhZXC81M29wQllxTHFtcFdqUXJ5YzBkK0tmVVBsVXh1SlI4QWZDYm5tamRyZmJoS0RwSGVjRXg4NlNOakciLCJtYWMiOiI0ODVkMDk1MWFhOWY2ZjhmZjFhMDJmMjVlMDAxMDBmYzljOTMwMDRiOWJkNGI4ZGQxYmZmNWEyOTU3ZjlhNmMyIn0%3D; expires=Mon, 13-Aug-2018 10:22:36 GMT; Max-Age=7200; path=/; httponly",
+							"name": "Set-Cookie",
+							"description": "an HTTP cookie"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.1.20",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Mon Aug 13 2018 05:22:35 GMT-0500 (CDT)",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "eyJpdiI6Imh4bW5ET1BCR1hVaHdlV0tRZHJLeXc9PSIsInZhbHVlIjoiVWwySlhZXC81M29wQllxTHFtcFdqUXJ5YzBkK0tmVVBsVXh1SlI4QWZDYm5tamRyZmJoS0RwSGVjRXg4NlNOakciLCJtYWMiOiI0ODVkMDk1MWFhOWY2ZjhmZjFhMDJmMjVlMDAxMDBmYzljOTMwMDRiOWJkNGI4ZGQxYmZmNWEyOTU3ZjlhNmMyIn0%3D",
+							"key": "laravel_session"
+						}
+					],
+					"body": "{\"error\":\"player not found\"}"
+				}
+			]
+		},
+		{
+			"name": "Spin [Post data]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f40a00fb-97d2-4e21-956d-7989932bbd57",
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"coins_won\", Math.random() * 1000);",
+							"pm.globals.set(\"coins_bet\", Math.random() * 500)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"player_id\": \"{{player_id}}\",\n\t\"hash\": \"{{hash}}\",\n\t\"coins_won\": \"{{coins_won}}\",\n\t\"coins_bet\": \"{{coins_bet}}\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/spin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"spin"
+					]
+				},
+				"description": "Make a spin"
+			},
+			"response": []
+		},
+		{
+			"name": "Players",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f40a00fb-97d2-4e21-956d-7989932bbd57",
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"coins_won\", Math.random() * 1000);",
+							"pm.globals.set(\"coins_bet\", Math.random() * 500)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"player_id\": \"{{player_id}}\",\n\t\"hash\": \"{{hash}}\",\n\t\"coins_won\": \"{{coins_won}}\",\n\t\"coins_bet\": \"{{coins_bet}}\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/spin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"spin"
+					]
+				},
+				"description": "Make a spin"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "57c791e3-b043-4eee-9cea-aeafa714c7fc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a57aa9c4-0001-43f8-9c53-39141cb1fcfd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3381f5c4-d650-4fdb-beed-b8216f34a723",
+			"key": "host",
+			"value": "localhost:8082",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "daf07ef3-bc6b-450d-a079-4af1acacd8ef",
+			"key": "player_id",
+			"value": "1291592521",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "b3cc5145-b9b3-4d12-be54-7baa0af71b74",
+			"key": "hash",
+			"value": "cce1c5129876b550a8845da2c521422879de20b59896783cfe4aa379f30b9f31",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "bc2814c6-f96d-4852-b47b-406b3ab1f068",
+			"key": "coins_won",
+			"value": "",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "00a5f18a-f37f-415f-9c4f-811226dcb537",
+			"key": "coins_bet",
+			"value": "",
+			"type": "string",
+			"description": ""
+		}
+	]
+}
