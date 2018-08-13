@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/spin', \App\Http\Controllers\SpinController::class . '@store');
